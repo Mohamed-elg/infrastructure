@@ -13,6 +13,7 @@ terraform {
     }
   }
 }
+
 provider "portainer" {
   endpoint        = var.endpoint
   api_key         = var.api_key
