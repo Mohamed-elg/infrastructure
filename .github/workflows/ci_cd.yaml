@@ -15,14 +15,14 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      TF_VAR_ENDPOINT: ${{ secrets.TF_VAR_ENDPOINT }}
-      TF_VAR_API_KEY: ${{ secrets.TF_VAR_API_KEY }}
-      TF_VAR_IP: ${{ secrets.TF_VAR_IP }}
-      TF_VAR_DEB_VOLUME_BASE_PATH: ${{ secrets.TF_VAR_DEB_VOLUME_BASE_PATH }}
-      TF_VAR_PI_VOLUME_BASE_PATH: ${{ secrets.TF_VAR_PI_VOLUME_BASE_PATH }}
-      TF_VAR_POSTGRE: ${{ secrets.TF_VAR_POSTGRE }}
-      TF_VAR_SMB: ${{ secrets.TF_VAR_SMB }}
-      TF_VAR_WEB_PASSWORD: ${{ secrets.TF_VAR_WEB_PASSWORD }}
+      TF_VAR_endpoint: ${{ secrets.TF_VAR_ENDPOINT }}
+      TF_VAR_api_key: ${{ secrets.TF_VAR_API_KEY }}
+      TF_VAR_ip: ${{ secrets.TF_VAR_IP }}
+      TF_VAR_deb_volume_base_path: ${{ secrets.TF_VAR_DEB_VOLUME_BASE_PATH }}
+      TF_VAR_pi_volume_base_path: ${{ secrets.TF_VAR_PI_VOLUME_BASE_PATH }}
+      TF_VAR_postgre: ${{ secrets.TF_VAR_POSTGRE }}
+      TF_VAR_smb: ${{ secrets.TF_VAR_SMB }}
+      TF_VAR_web_password: ${{ secrets.TF_VAR_WEB_PASSWORD }}
 
     steps:
       - name: Checkout
