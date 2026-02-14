@@ -1,0 +1,28 @@
+resource "portainer_stack" "scrutiny" {
+  name            = "scrutiny"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.environment["deb"]
+
+  stack_file_content = <<-EOT
+    version: '3.5'
+    services:
+      scrutiny:
+        restart: unless-stopped
+        container_name: scrutiny
+        image: ghcr.io/analogj/scrutiny:master-omnibus
+        cap_add:
+          - SYS_RAWIO
+        ports:
+          - "8080:8080" # webapp
+          - "8086:8086" # influxDB admin
+        volumes:
+          - /run/udev:/run/udev:ro
+          - ./config:/opt/scrutiny/config
+          - ./influxdb:/opt/scrutiny/influxdb
+        devices:
+          - "/dev/sda"
+          - "/dev/sdb"  
+          - "/dev/sdc"  
+  EOT
+}

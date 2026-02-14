@@ -1,0 +1,16 @@
+endpoint     = ""
+api_key      = ""
+pi_volume_base_path  = ""
+deb_volume_base_path = ""
+ip           = ""
+web_password = ""
+postgre = {
+  db = ""
+  user = ""
+  pass = ""
+}
+smb = {
+  name = ""
+  user = ""
+  pass = ""
+}
