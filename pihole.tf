@@ -19,18 +19,5 @@ resource "portainer_stack" "pihole" {
         volumes:
           - ${var.pi_volume_base_path}/etc-pihole:/etc/pihole
         restart: unless-stopped
-      cloudflared:
-        image: cloudflare/cloudflared:latest
-        container_name: cloudflared
-        command: proxy-dns
-        environment:
-          - TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query
-          - TUNNEL_DNS_PORT=5053
-          - TUNNEL_DNS_ADDRESS=0.0.0.0
-        network_mode: host
-        ports:
-          - 5053:5053/tcp
-          - 5053:5053/udp
-        restart: unless-stopped
   EOT
 }
