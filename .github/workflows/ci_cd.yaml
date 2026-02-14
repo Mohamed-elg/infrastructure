@@ -1,0 +1,46 @@
+---
+name: "Terraform"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    env: TF_VAR_API_KEY = ${{ secrets.TF_VAR_API_KEY }}
+      TF_VAR_DEB_VOLUME_BASE_PATH = ${{ secrets.TF_VAR_DEB_VOLUME_BASE_PATH }}
+      TF_VAR_ENDPOINT = ${{ secrets.TF_VAR_ENDPOINT }}
+      TF_VAR_IP = ${{ secrets.TF_VAR_IP }}
+      TF_VAR_PI_VOLUME_BASE_PATH = ${{ secrets.TF_VAR_PI_VOLUME_BASE_PATH }}
+      TF_VAR_POSTGRE = ${{ secrets.TF_VAR_POSTGRE }}
+      TF_VAR_SMB = ${{ secrets.TF_VAR_SMB }}
+      TF_VAR_WEB_PASSWORD = ${{ secrets.TF_VAR_WEB_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
