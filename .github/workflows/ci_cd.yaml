@@ -53,5 +53,5 @@ jobs:
           expand-comment: true
 
       - name: Terraform Apply
-        if: github.ref == 'main'
+        if: github.event.pull_request.merged
         run: terraform apply -auto-approve tfplan
