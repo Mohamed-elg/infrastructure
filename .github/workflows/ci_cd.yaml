@@ -8,6 +8,10 @@ on:
     branches:
       - "main"
 
+defaults:
+  run:
+    working-directory: terraform
+
 permissions:
   contents: read
   pull-requests: write
