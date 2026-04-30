@@ -1,3 +1,6 @@
+# Ansible
+inventory.ini
+
 # Local .terraform directories
 .terraform/
 
